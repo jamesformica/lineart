@@ -7,7 +7,7 @@ class App extends Component {
     return (
       <Fragment>
         <canvas id="canvas" style={{ width: '100%', height: '100vh' }} />
-        <Lineart canvasId="canvas" debug={false} />
+        <Lineart canvasId="canvas" />
       </Fragment>
     );
   }
