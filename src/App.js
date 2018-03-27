@@ -1,16 +1,14 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 
 import Lineart from './components/Lineart/Lineart';
+import Options from './components/Options/Options';
 
-class App extends Component {
-  render() {
-    return (
-      <Fragment>
-        <canvas id="canvas" style={{ width: '100%', height: '100vh' }} />
-        <Lineart canvasId="canvas" />
-      </Fragment>
-    );
-  }
-}
+const App = () => (
+  <Fragment>
+    <canvas id="canvas" style={{ width: '100%', height: '100vh' }} />
+    <Lineart canvasId="canvas" />
+    <Options />
+  </Fragment>
+)
 
 export default App;

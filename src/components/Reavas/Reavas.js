@@ -36,6 +36,8 @@ class Reavas extends Component {
       const w = this.canvas.width;
       const h = this.canvas.height;
 
+      this.context = this.canvas.getContext("2d");
+      this.context.beginPath();
       this.context.clearRect(0, 0, w, h);
       this.paint && this.paint(this.context, w, h);
 

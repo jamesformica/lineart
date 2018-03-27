@@ -37,9 +37,9 @@ class Dot {
     this.velocity.y += Math.cos(radA);
   }
 
-  paint(context, w, h) {
+  paint(context, w, h, colour) {
     context.beginPath();
-    context.fillStyle = "white";
+    context.fillStyle = colour;
     context.arc(this.x, this.y, 1.5, 0, 2 * Math.PI);
     context.fill();
 

@@ -1,7 +1,8 @@
-import Reavas from '../Reavas/Reavas'
+import { connect } from 'react-redux';
 import includes from 'lodash/includes';
 import range from 'lodash/range';
 
+import Reavas from '../Reavas/Reavas'
 import Dot from './Dot';
 import Line, { TOLLERANCE } from './Line';
 
@@ -9,7 +10,6 @@ const MAX_DOTS = 50;
 
 class Lineart extends Reavas {
   setup(context, w, h) {
-    this.bg = 'black';
     this.dots = [];
 
     range(0, MAX_DOTS - 1).forEach(() => {
@@ -18,6 +18,8 @@ class Lineart extends Reavas {
   }
 
   paint(context, w, h) {
+    const { bgColour, dotColour, lineColour } = this.props;
+
     this.dots = this.removeOutOfBounds();
 
     range(0, MAX_DOTS - this.dots.length).forEach(() => {
@@ -25,14 +27,14 @@ class Lineart extends Reavas {
     });
 
     context.beginPath();
-    context.fillStyle = this.bg;
+    context.fillStyle = bgColour;
     context.fillRect(0, 0, w, h);
 
-    this.dots.forEach(d => d.paint(context, w, h));
+    this.dots.forEach(d => d.paint(context, w, h, dotColour));
     this.findLines().forEach(d => {
       d.dot.x > d.neighbour.x ? d.dot.velocityDownX() : d.dot.velocityUpX();
       d.dot.y > d.neighbour.y ? d.dot.velocityDownY() : d.dot.velocityUpY();
-      new Line(d.dot.x, d.dot.y, d.neighbour.x, d.neighbour.y).paint(context);
+      new Line(d.dot.x, d.dot.y, d.neighbour.x, d.neighbour.y).paint(context, lineColour);
     });
   }
 
@@ -70,4 +72,10 @@ class Lineart extends Reavas {
   )
 }
 
-export default Lineart;
+const mapStateToProps = state => ({
+  bgColour: state.bgColour,
+  dotColour: state.dotColour,
+  lineColour: state.lineColour
+});
+
+export default connect(mapStateToProps)(Lineart);
