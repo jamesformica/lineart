@@ -4,10 +4,10 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
 import App from './App';
-import { colours, initialState } from './reducer';
+import { reducer, initialState } from './reducer';
 import './index.css';
 
-const store = createStore(colours, initialState);
+const store = createStore(reducer, initialState);
 
 ReactDOM.render(
   <Provider store={store}>
