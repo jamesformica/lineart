@@ -11,6 +11,15 @@
   box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 10px, rgba(0, 0, 0, 0.16) 0px 2px 5px;
 }
 
+@media(max-width: 660px) {
+  .wrapper {
+    position: fixed;
+    top: 1.5rem;
+    left: 0;
+    width: 100%;
+  }
+}
+
 .slider {
   margin-top: 1rem;
   width: 60%;
