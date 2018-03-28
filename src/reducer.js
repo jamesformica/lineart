@@ -13,7 +13,7 @@ export const initialState = {
   dotColour: '#e91e63',
   lineColour: '#2196f3',
   dotSize: 1.5,
-  gravity: 0.01,
+  gravity: 0.008,
   ...initialPopupState
 }
 
@@ -30,11 +30,11 @@ export const reducer = (state = initialState, action) => {
     case actions.CHANGE_GRAVITY:
       return { ...state, gravity: Number(action.gravity) };
     case actions.OPEN_BG_COLOUR:
-      return { ...state, ...initialPopupState, bgColourOpen: !state.bgOpen };
+      return { ...state, ...initialPopupState, bgColourOpen: !state.bgColourOpen };
     case actions.OPEN_DOT_COLOUR:
-      return { ...state, ...initialPopupState, dotColourOpen: !state.dotOpen };
+      return { ...state, ...initialPopupState, dotColourOpen: !state.dotColourOpen };
     case actions.OPEN_LINE_COLOUR:
-      return { ...state, ...initialPopupState, lineColourOpen: !state.lineOpen };
+      return { ...state, ...initialPopupState, lineColourOpen: !state.lineColourOpen };
     case actions.OPEN_DOT_SIZE:
       return { ...state, ...initialPopupState, dotSizeOpen: !state.dotSizeOpen };
     case actions.OPEN_GRAVITY:

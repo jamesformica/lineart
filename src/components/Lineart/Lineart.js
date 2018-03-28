@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import includes from 'lodash/includes';
 import range from 'lodash/range';
+import random from 'lodash/random';
 
 import Reavas from '../Reavas/Reavas'
 import Dot from './Dot';
@@ -9,22 +10,19 @@ import Line, { TOLLERANCE } from './Line';
 const MAX_DOTS = 50;
 
 class Lineart extends Reavas {
-  setup(context, w, h) {
+  setup(canvas) {
     this.dots = [];
 
-    range(0, MAX_DOTS - 1).forEach(() => {
-      this.dots.push(new Dot(w, h, true));
-    });
+    this.attachEvents(canvas);
+    this.buildInitialDots(canvas.width, canvas.height);
   }
 
-  paint(context, w, h) {
+  paint(canvas, context) {
     const { bgColour, dotColour, lineColour, dotSize, gravity } = this.props;
+    const { width: w, height: h } = canvas;
 
-    this.dots = this.removeOutOfBounds();
-
-    range(0, MAX_DOTS - this.dots.length).forEach(() => {
-      this.dots.push(new Dot(w, h, false));
-    });
+    this.removeOutOfBounds();
+    this.buildNewDots(w, h);
 
     context.beginPath();
     context.fillStyle = bgColour;
@@ -38,8 +36,34 @@ class Lineart extends Reavas {
     });
   }
 
+  attachEvents(canvas) {
+    canvas.onclick = e => {
+      range(0, random(2, 4)).forEach(() => {
+        const dot = new Dot({ x: e.clientX, y: e.clientY });
+        this.dots.push(dot);
+      });
+    }
+  }
+
+  buildInitialDots(w, h) {
+    range(0, MAX_DOTS - 1).forEach(() => {
+      const dot = new Dot({ w, h, rand: true });
+      this.dots.push(dot);
+    });
+  }
+
+  buildNewDots(w, h) {
+    const newDotCount = Math.max(MAX_DOTS - this.dots.length, 0);
+    range(0, newDotCount).forEach(() => {
+      const dot = new Dot({ w, h, rand: false });
+      this.dots.push(dot);
+    });
+  }
+
   removeOutOfBounds = () => (
-    this.dots.filter(d => this.isInside(d.x, d.y, 0, 0, this.canvas.width, this.canvas.height))
+    this.dots = this.dots.filter(d =>
+      this.isInside(d.x, d.y, 0, 0, this.canvas.width, this.canvas.height)
+    )
   )
 
   findLines = () => (

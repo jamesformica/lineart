@@ -4,9 +4,28 @@ import random from 'lodash/random';
 const SIDES = ["TOP", "LEFT", "RIGHT", "BOTTOM"];
 
 class Dot {
-  constructor(w, h, rand) {
+  constructor(options) {
     this.velocity = { x: 0, y: 0 };
 
+    const { x, y, w, h, rand } = options;
+    if (x && y) {
+      this.setMousePosition(x, y);
+    } else {
+      this.setStartPosition(w, h, rand);
+    }
+
+    const radA = this.a * Math.PI / 180;
+    this.velocity.x += Math.sin(-radA);
+    this.velocity.y += Math.cos(radA);
+  }
+
+  setMousePosition(x, y) {
+    this.x = x;
+    this.y = y;
+    this.a = random(0, 360);
+  }
+
+  setStartPosition(w, h, rand) {
     switch (sample(SIDES)) {
       case "TOP":
         this.x = random(0, w);
@@ -31,10 +50,6 @@ class Dot {
       default:
         break;
     }
-
-    const radA = this.a * Math.PI / 180;
-    this.velocity.x += Math.sin(-radA);
-    this.velocity.y += Math.cos(radA);
   }
 
   paint(context, w, h, colour, size) {

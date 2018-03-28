@@ -45,8 +45,8 @@ const Options = (props) => (
       <RangeOption
         text="dot:gravity"
         min={0}
-        max={0.05}
-        step={0.01}
+        max={0.02}
+        step={0.001}
         value={props.gravity}
         isOpen={props.isGravityOpen}
         handleOpen={props.openGravity}

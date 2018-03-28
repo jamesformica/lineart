@@ -21,7 +21,7 @@ class Reavas extends Component {
     this.canvas.setAttribute('width', rect.width);
     this.canvas.setAttribute('height', rect.height);
 
-    this.setup && this.setup(this.context, this.canvas.width, this.canvas.height);
+    this.setup && this.setup(this.canvas, this.context);
 
     window.requestAnimationFrame(this.loop);
   }
@@ -39,7 +39,7 @@ class Reavas extends Component {
       this.context = this.canvas.getContext("2d");
       this.context.beginPath();
       this.context.clearRect(0, 0, w, h);
-      this.paint && this.paint(this.context, w, h);
+      this.paint && this.paint(this.canvas, this.context);
 
       if (this.props.debug) {
         const sinceStart = timestamp - this.startTime;
