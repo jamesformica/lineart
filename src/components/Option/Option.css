@@ -1,10 +1,14 @@
 .option {
   position: relative;
-  margin-left: 1rem;
-  margin-right: 1rem;
-  color: white;
+  padding: 0.5rem 1rem;
+  color: #ffffff;
   cursor: pointer;
   user-select: none;
+}
+
+.option:hover {
+  background-color: #ffffff;
+  color: #000000;
 }
 
 .picker {

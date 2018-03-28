@@ -47,20 +47,20 @@ class Dot {
     this.y += this.velocity.y;
   }
 
-  velocityUpX() {
-    this.velocity.x = Math.min(this.velocity.x + 0.01, 1.5);
+  velocityUpX(gravity) {
+    this.velocity.x = Math.min(this.velocity.x + gravity, 1.5);
   }
 
-  velocityDownX() {
-    this.velocity.x = Math.max(this.velocity.x - 0.01, -1.5);
+  velocityDownX(gravity) {
+    this.velocity.x = Math.max(this.velocity.x - gravity, -1.5);
   }
 
-  velocityUpY() {
-    this.velocity.y = Math.min(this.velocity.y + 0.01, 1.5);
+  velocityUpY(gravity) {
+    this.velocity.y = Math.min(this.velocity.y + gravity, 1.5);
   }
 
-  velocityDownY() {
-    this.velocity.y = Math.max(this.velocity.y - 0.01, -1.5);
+  velocityDownY(gravity) {
+    this.velocity.y = Math.max(this.velocity.y - gravity, -1.5);
   }
 }
 
