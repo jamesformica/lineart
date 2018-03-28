@@ -7,11 +7,10 @@ import Reavas from '../Reavas/Reavas'
 import Dot from './Dot';
 import Line, { TOLLERANCE } from './Line';
 
-const MAX_DOTS = 50;
-
 class Lineart extends Reavas {
   setup(canvas) {
     this.dots = [];
+    this.maxDots = canvas.width / 2 / 10;
 
     this.attachEvents(canvas);
     this.buildInitialDots(canvas.width, canvas.height);
@@ -46,14 +45,14 @@ class Lineart extends Reavas {
   }
 
   buildInitialDots(w, h) {
-    range(0, MAX_DOTS - 1).forEach(() => {
+    range(0, this.maxDots - 1).forEach(() => {
       const dot = new Dot({ w, h, rand: true });
       this.dots.push(dot);
     });
   }
 
   buildNewDots(w, h) {
-    const newDotCount = Math.max(MAX_DOTS - this.dots.length, 0);
+    const newDotCount = Math.max(this.maxDots - this.dots.length, 0);
     range(0, newDotCount).forEach(() => {
       const dot = new Dot({ w, h, rand: false });
       this.dots.push(dot);
