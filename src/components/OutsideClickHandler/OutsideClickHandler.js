@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import autobind from 'autobind-decorator'
 
-@autobind
 class OutsideClickHandler extends Component {
+  constructor() {
+    super();
+    this.handleClickOutside = this.handleClickOutside.bind(this);
+  }
+
   componentDidMount() {
     document.addEventListener('mousedown', this.handleClickOutside);
   }
