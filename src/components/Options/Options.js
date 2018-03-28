@@ -1,42 +1,39 @@
 import React from 'react';
-import { TwitterPicker } from 'react-color';
 import { connect } from 'react-redux';
 
 import {
   changeBgColour, changeDotColour, changeLineColour,
-  openBg, openDot, openLine
+  openBg, openDot, openLine, closeAll
 } from '../../actions';
+import Option from '../Option/Option';
+import OutSideClickHandler from '../OutsideClickHandler/OutsideClickHandler';
 import styles from './Options.css';
 
 const Options = (props) => (
-  <div className={styles.options}>
-    <span className={styles.option} onClick={props.openBg}>
-      BG Colour
-    <div className={styles.colour}>
-        {props.isBgOpen &&
-          <TwitterPicker color={props.bgColour} onChange={props.handleBgChange} />
-        }
-      </div>
-    </span>
+  <OutSideClickHandler handleClick={props.closeAll}>
+    <div className={styles.options}>
+      <Option
+        text="bg:colour"
+        isOpen={props.isBgOpen}
+        handleOpen={props.openBg}
+        handleChange={props.handleBgChange}
+      />
 
-    <span className={styles.option} onClick={props.openDot}>
-      Dot Colour
-    <div className={styles.colour}>
-        {props.isDotOpen &&
-          <TwitterPicker color={props.dotColour} onChange={props.handleDotChange} />
-        }
-      </div>
-    </span>
+      <Option
+        text="dot:colour"
+        isOpen={props.isDotOpen}
+        handleOpen={props.openDot}
+        handleChange={props.handleDotChange}
+      />
 
-    <span className={styles.option} onClick={props.openLine}>
-      Line Colour
-    <div className={styles.colour}>
-        {props.isLineOpen &&
-          <TwitterPicker color={props.lineColour} onChange={props.handleLineChange} />
-        }
-      </div>
-    </span>
-  </div>
+      <Option
+        text="line:colour"
+        isOpen={props.isLineOpen}
+        handleOpen={props.openLine}
+        handleChange={props.handleLineChange}
+      />
+    </div>
+  </OutSideClickHandler>
 );
 
 const mapStateToProps = state => ({
@@ -52,6 +49,7 @@ const mapDispatchToProps = dispatch => ({
   openBg: () => dispatch(openBg),
   openDot: () => dispatch(openDot),
   openLine: () => dispatch(openLine),
+  closeAll: () => dispatch(closeAll),
   handleBgChange: ({ hex }) => dispatch(changeBgColour(hex)),
   handleDotChange: ({ hex }) => dispatch(changeDotColour(hex)),
   handleLineChange: ({ hex }) => dispatch(changeLineColour(hex))

@@ -1,0 +1,14 @@
+.option {
+  position: relative;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+}
+
+.picker {
+  position: absolute;
+  top: calc(100% + 1rem);
+  left: 0;
+}

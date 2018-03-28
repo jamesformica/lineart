@@ -7,22 +7,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(0,0,0,0.4);
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
+  background-color: black;
   z-index: 10;
-}
-
-.option {
-  position: relative;
-  margin-left: 1rem;
-  margin-right: 1rem;
-  color: white;
-  cursor: pointer;
-}
-
-.colour {
-  position: absolute;
-  top: calc(100% + 1rem);
-  left: 0;
 }
