@@ -13,7 +13,7 @@ class Lineart extends Reavas {
     this.dots = [];
 
     range(0, MAX_DOTS - 1).forEach(() => {
-      this.dots.push(new Dot(w, h));
+      this.dots.push(new Dot(w, h, true));
     });
   }
 
@@ -23,7 +23,7 @@ class Lineart extends Reavas {
     this.dots = this.removeOutOfBounds();
 
     range(0, MAX_DOTS - this.dots.length).forEach(() => {
-      this.dots.push(new Dot(w, h));
+      this.dots.push(new Dot(w, h, false));
     });
 
     context.beginPath();

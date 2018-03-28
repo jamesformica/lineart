@@ -10,8 +10,8 @@ const initialPopupState = {
 
 export const initialState = {
   bgColour: '#000000',
-  dotColour: '#ffffff',
-  lineColour: '#ffffff',
+  dotColour: '#e91e63',
+  lineColour: '#2196f3',
   dotSize: 1.5,
   gravity: 0.01,
   ...initialPopupState

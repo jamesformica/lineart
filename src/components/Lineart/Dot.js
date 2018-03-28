@@ -4,28 +4,28 @@ import random from 'lodash/random';
 const SIDES = ["TOP", "LEFT", "RIGHT", "BOTTOM"];
 
 class Dot {
-  constructor(w, h) {
+  constructor(w, h, rand) {
     this.velocity = { x: 0, y: 0 };
 
     switch (sample(SIDES)) {
       case "TOP":
         this.x = random(0, w);
-        this.y = 0;
+        this.y = rand ? random(0, h / 2) : 0;
         this.a = random(180, 360);
         break;
       case "LEFT":
-        this.x = 0;
+        this.x = rand ? random(0, w / 2) : 0;
         this.y = random(0, h);
         this.a = random(270, 540) % 360;
         break;
       case "RIGHT":
-        this.x = w;
+        this.x = rand ? random(w / 2, w) : w;
         this.y = random(0, h);
         this.a = random(90, 270);
         break;
       case "BOTTOM":
         this.x = random(0, w);
-        this.y = h;
+        this.y = rand ? random(h / 2, h) : h;
         this.a = random(0, 180);
         break;
       default:
