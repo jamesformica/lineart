@@ -1,14 +1,18 @@
 .option {
   position: relative;
-  padding: 0.5rem 1rem;
-  color: #ffffff;
   cursor: pointer;
+}
+
+.title {
+  display: inline-block;
+  color: #fff;
+  padding: 0.5rem 1rem;
   user-select: none;
 }
 
-.option:hover {
-  background-color: #ffffff;
-  color: #000000;
+.title:hover {
+  color: #000;
+  background-color: #fff;
 }
 
 .picker {

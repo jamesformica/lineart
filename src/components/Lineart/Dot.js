@@ -10,22 +10,22 @@ class Dot {
     switch (sample(SIDES)) {
       case "TOP":
         this.x = random(0, w);
-        this.y = random(0, h / 2);
+        this.y = 0;
         this.a = random(180, 360);
         break;
       case "LEFT":
-        this.x = random(0, w / 2);
+        this.x = 0;
         this.y = random(0, h);
         this.a = random(270, 540) % 360;
         break;
       case "RIGHT":
-        this.x = random(w / 2, w);
+        this.x = w;
         this.y = random(0, h);
         this.a = random(90, 270);
         break;
       case "BOTTOM":
         this.x = random(0, w);
-        this.y = random(h / 2, h);
+        this.y = h;
         this.a = random(0, 180);
         break;
       default:
