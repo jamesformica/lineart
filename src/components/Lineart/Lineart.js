@@ -18,7 +18,7 @@ class Lineart extends Reavas {
   }
 
   paint(context, w, h) {
-    const { bgColour, dotColour, lineColour } = this.props;
+    const { bgColour, dotColour, lineColour, dotSize } = this.props;
 
     this.dots = this.removeOutOfBounds();
 
@@ -30,7 +30,7 @@ class Lineart extends Reavas {
     context.fillStyle = bgColour;
     context.fillRect(0, 0, w, h);
 
-    this.dots.forEach(d => d.paint(context, w, h, dotColour));
+    this.dots.forEach(d => d.paint(context, w, h, dotColour, dotSize));
     this.findLines().forEach(d => {
       d.dot.x > d.neighbour.x ? d.dot.velocityDownX() : d.dot.velocityUpX();
       d.dot.y > d.neighbour.y ? d.dot.velocityDownY() : d.dot.velocityUpY();
@@ -75,7 +75,8 @@ class Lineart extends Reavas {
 const mapStateToProps = state => ({
   bgColour: state.bgColour,
   dotColour: state.dotColour,
-  lineColour: state.lineColour
+  lineColour: state.lineColour,
+  dotSize: state.dotSize
 });
 
 export default connect(mapStateToProps)(Lineart);

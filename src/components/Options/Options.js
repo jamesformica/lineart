@@ -2,34 +2,46 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import {
-  changeBgColour, changeDotColour, changeLineColour,
-  openBg, openDot, openLine, closeAll
+  changeBgColour, changeDotColour, changeLineColour, changeDotSize,
+  openBgColour, openDotColour, openLineColour, openDotSize, closeAll
 } from '../../actions';
-import Option from '../Option/Option';
+import ColourOption from '../ColourOption/ColourOption';
+import RangeOption from '../RangeOption/RangeOption';
 import OutSideClickHandler from '../OutsideClickHandler/OutsideClickHandler';
 import styles from './Options.css';
 
 const Options = (props) => (
   <OutSideClickHandler handleClick={props.closeAll}>
     <div className={styles.options}>
-      <Option
+      <ColourOption
         text="bg:colour"
-        isOpen={props.isBgOpen}
-        handleOpen={props.openBg}
+        isOpen={props.isBgColourOpen}
+        handleOpen={props.openBgColour}
         handleChange={props.handleBgChange}
       />
 
-      <Option
+      <ColourOption
         text="dot:colour"
-        isOpen={props.isDotOpen}
-        handleOpen={props.openDot}
+        isOpen={props.isDotColourOpen}
+        handleOpen={props.openDotColour}
         handleChange={props.handleDotChange}
       />
 
-      <Option
+      <RangeOption
+        text="dot:size"
+        min={0}
+        max={5}
+        step={0.5}
+        value={props.dotSize}
+        isOpen={props.isDotSizeOpen}
+        handleOpen={props.openDotSize}
+        handleChange={props.handleDotSizeChange}
+      />
+
+      <ColourOption
         text="line:colour"
-        isOpen={props.isLineOpen}
-        handleOpen={props.openLine}
+        isOpen={props.isLineColourOpen}
+        handleOpen={props.openLineColour}
         handleChange={props.handleLineChange}
       />
     </div>
@@ -40,19 +52,23 @@ const mapStateToProps = state => ({
   bgColour: state.bgColour,
   dotColour: state.dotColour,
   lineColour: state.lineColour,
-  isBgOpen: state.bgOpen,
-  isDotOpen: state.dotOpen,
-  isLineOpen: state.lineOpen
+  dotSize: state.dotSize,
+  isBgColourOpen: state.bgColourOpen,
+  isDotColourOpen: state.dotColourOpen,
+  isLineColourOpen: state.lineColourOpen,
+  isDotSizeOpen: state.dotSizeOpen,
 });
 
 const mapDispatchToProps = dispatch => ({
-  openBg: () => dispatch(openBg),
-  openDot: () => dispatch(openDot),
-  openLine: () => dispatch(openLine),
+  openBgColour: () => dispatch(openBgColour),
+  openDotColour: () => dispatch(openDotColour),
+  openLineColour: () => dispatch(openLineColour),
+  openDotSize: () => dispatch(openDotSize),
   closeAll: () => dispatch(closeAll),
   handleBgChange: ({ hex }) => dispatch(changeBgColour(hex)),
   handleDotChange: ({ hex }) => dispatch(changeDotColour(hex)),
-  handleLineChange: ({ hex }) => dispatch(changeLineColour(hex))
+  handleLineChange: ({ hex }) => dispatch(changeLineColour(hex)),
+  handleDotSizeChange: ({ target }) => dispatch(changeDotSize(target.value))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Options);

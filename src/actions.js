@@ -1,10 +1,18 @@
 export const CHANGE_BG_COLOUR = 'CHANGE_BG_COLOUR';
 export const CHANGE_DOT_COLOUR = 'CHANGE_DOT_COLOUR';
 export const CHANGE_LINE_COLOUR = 'CHANGE_LINE_COLOUR';
-export const OPEN_BG = 'OPEN_BG';
-export const OPEN_DOT = 'OPEN_DOT';
-export const OPEN_LINE = 'OPEN_LINE';
+export const CHANGE_DOT_SIZE = 'CHANGE_DOT_SIZE';
+export const OPEN_BG_COLOUR = 'OPEN_BG_COLOUR';
+export const OPEN_DOT_COLOUR = 'OPEN_DOT_COLOUR';
+export const OPEN_LINE_COLOUR = 'OPEN_LINE_COLOUR';
+export const OPEN_DOT_SIZE = 'OPEN_DOT_SIZE';
 export const CLOSE_ALL = 'CLOSE_ALL';
+
+export const openBgColour = { type: OPEN_BG_COLOUR };
+export const openDotColour = { type: OPEN_DOT_COLOUR };
+export const openLineColour = { type: OPEN_LINE_COLOUR };
+export const openDotSize = { type: OPEN_DOT_SIZE };
+export const closeAll = { type: CLOSE_ALL };
 
 export const changeBgColour = colour => ({
   type: CHANGE_BG_COLOUR,
@@ -21,7 +29,7 @@ export const changeLineColour = colour => ({
   colour
 });
 
-export const openBg = { type: OPEN_BG };
-export const openDot = { type: OPEN_DOT };
-export const openLine = { type: OPEN_LINE };
-export const closeAll = { type: CLOSE_ALL };
+export const changeDotSize = size => ({
+  type: CHANGE_DOT_SIZE,
+  size
+});
